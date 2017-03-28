@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dev Entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Devdate</th>
+      <th>Devduration</th>
+      <th>Note</th>
+      <th>Project</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dev_entries.each do |dev_entry| %>
+      <tr>
+        <td><%= dev_entry.devDate %></td>
+        <td><%= dev_entry.devDuration %></td>
+        <td><%= dev_entry.note %></td>
+        <td><%= dev_entry.project %></td>
+        <td><%= dev_entry.user %></td>
+        <td><%= link_to 'Show', dev_entry %></td>
+        <td><%= link_to 'Edit', edit_dev_entry_path(dev_entry) %></td>
+        <td><%= link_to 'Destroy', dev_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dev Entry', new_dev_entry_path %>

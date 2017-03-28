@@ -1,0 +1,2 @@
+module DevEntriesHelper
+end

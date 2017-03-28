@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Devdate:</strong>
+  <%= @dev_entry.devDate %>
+</p>
+
+<p>
+  <strong>Devduration:</strong>
+  <%= @dev_entry.devDuration %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @dev_entry.note %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @dev_entry.project %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @dev_entry.user %>
+</p>
+
+<%= link_to 'Edit', edit_dev_entry_path(@dev_entry) %> |
+<%= link_to 'Back', dev_entries_path %>

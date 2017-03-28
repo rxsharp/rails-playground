@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @dev_entry = current_user.dev_entries.build
+    @devEntriesOnProject = DevEntry.where(project_id: @project.id)
   end
 
   # GET /projects/new
@@ -25,7 +27,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = current_user.projects.build(project_params)
-    
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }

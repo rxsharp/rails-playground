@@ -19,6 +19,10 @@
   <strong>User:</strong>
   <%= @project.user.email %>
 </p>
+<%= link_to 'Edit Current Project', edit_project_path(@project) %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<h4>Add new time</h4>
+<%= render 'dev_entries/form', dev_entry: @dev_entry %>
+<%= render 'dev_entries/listing/singleProject' %>
+
+<%= link_to 'Back to list of projects', projects_path %>
