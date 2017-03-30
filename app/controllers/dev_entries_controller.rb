@@ -10,11 +10,12 @@ class DevEntriesController < ApplicationController
   # GET /dev_entries/1
   # GET /dev_entries/1.json
   def show
+
   end
 
   # GET /dev_entries/new
   def new
-    # @dev_entry = current_user.dev_entries.build
+    # @dev_entryNO = current_user.dev_entries.build
   end
 
   # GET /dev_entries/1/edit
@@ -25,11 +26,11 @@ class DevEntriesController < ApplicationController
   # POST /dev_entries.json
   def create
     @dev_entry = current_user.dev_entries.build(dev_entry_params)
-
-
     respond_to do |format|
       if @dev_entry.save
-        format.html { redirect_to @dev_entry, notice: 'Dev entry was successfully created.' }
+        set_for_project
+        format.html {}
+        format.js {}
         format.json { render :show, status: :created, location: @dev_entry }
       else
         format.html { render :new }
@@ -68,6 +69,10 @@ class DevEntriesController < ApplicationController
       @dev_entry = DevEntry.find(params[:id])
     end
 
+    def set_for_project
+      @devEntriesOnProject = DevEntry.where(project_id: @dev_entry.project_id).order(created_at: :desc)
+      @project = Project.find(@dev_entry.project_id)
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def dev_entry_params
       params.require(:dev_entry).permit(:devDate, :devDuration, :note, :project_id, :user_id)

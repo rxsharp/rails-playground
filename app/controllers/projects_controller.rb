@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_dev_entries, only: [:show]
 
   # GET /projects
   # GET /projects.json
@@ -10,8 +11,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @dev_entry = current_user.dev_entries.build
-    @devEntriesOnProject = DevEntry.where(project_id: @project.id)
   end
 
   # GET /projects/new
@@ -67,6 +66,11 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
+    end
+
+    def set_dev_entries
+      @project_dev_entry = current_user.dev_entries.build
+      @devEntriesOnProject = DevEntry.where(project_id: @project.id).order(created_at: :desc)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -21,8 +21,9 @@
 </p>
 <%= link_to 'Edit Current Project', edit_project_path(@project) %>
 
-<h4>Add new time</h4>
-<%= render 'dev_entries/form', dev_entry: @dev_entry %>
-<%= render 'dev_entries/listing/singleProject' %>
+<%= render 'projects/dev_entries/form', dev_entry: @project_dev_entry %>
+<div id="listing">
+  <%= render 'projects/dev_entries/singleProject', project: @project %>
+</div>
 
 <%= link_to 'Back to list of projects', projects_path %>
