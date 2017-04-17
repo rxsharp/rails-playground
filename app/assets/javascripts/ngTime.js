@@ -15,9 +15,9 @@
       })
     }])
     .controller('TimeProject', function($location, TimeEntries, $resource){
-      var vm = this;
-      vm.title = "A title to test";
-      vm.devEntries = TimeEntries.query();
-        })
+        var vm = this;
+        vm.title = "A title to test";
+        vm.devEntries = TimeEntries.query();
+      })
 
 }());

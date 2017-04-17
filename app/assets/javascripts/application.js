@@ -17,4 +17,6 @@
 //= require angular-rails-templates
 // Templates in app/assets/javascript/templates
 //= require_tree ./templates
+//= require ngTime
+//= require ngTimeAdd
 //= require_tree .
