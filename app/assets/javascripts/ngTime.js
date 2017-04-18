@@ -9,15 +9,14 @@
       $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     }])
     .factory('TimeEntries', ['$resource',function($resource){
-      return $resource('/dev_entries.json', {},{
-      query: { method: 'GET', isArray: true },
+      return $resource('/projects/:pid/dev_entries.json', {pid: '@pid'},{
       create: { method: 'POST' }
       })
     }])
-    .controller('TimeProject', function($location, TimeEntries, $resource){
-        var vm = this;
-        vm.title = "A title to test";
-        vm.devEntries = TimeEntries.query();
+    .factory('TimeLoader', ['$resource',function($resource){
+      return $resource('/dev_entries.json', {},{
+      query: { method: 'GET', isArray: true },
       })
+    }])
 
 }());

@@ -10,7 +10,7 @@ class DevEntriesController < ApplicationController
   end
 
   def create
-    respond_with DevEntry.create!(params[:dev_entry])
+    respond_with current_user.dev_entries.create!(dev_entry_params)
   end
 
   def update

@@ -1,8 +1,11 @@
 <h3>Enter a time (Angular form)</h3>
 <form ng-submit="tf.addTime(entry)"
-      ng-init="entry.projectId = project.id; entry.userId = user.id">
+      ng-init="entry.project_id = project.id; entry.user_id = user.id">
   <input type="date" ng-model="entry.devDate">
   <input type="text" ng-model="entry.devDuration">
   <textarea name="name" ng-model="entry.note"></textarea>
   <input type="submit" value="Add Time" />
 </form>
+<ul ng-repeat="tf in tf.entries track by $index">
+  <li>{{tf.devDate | date : format : short}} | {{tf.devDuration}} | {{tf.note}}</li>
+</ul>

@@ -5,9 +5,6 @@ angular.module('timeApp')
 
 .directive('timeForm', timeFormDirective)
 .controller('timeFormController', timeFormController)
-.directive('timeList', timeListDirective)
-.controller('timeListController', timeListController)
-
 
 timeFormDirective.$inject = [];
 function timeFormDirective(){
@@ -22,33 +19,21 @@ function timeFormDirective(){
   };
 }
 
-timeListDirective.$inject = [];
-function timeListDirective(){
-  return {
-    restrict: 'E',
-    templateUrl: 'timeList.html',
-    controller: 'timeListController as tl',
-  };
-}
-
-timeFormController.$inject = ['TimeEntries'];
-function timeFormController(TimeEntries){
+timeFormController.$inject = ['TimeEntries', 'TimeLoader'];
+function timeFormController(TimeEntries, TimeLoader){
   var tf = this;
+  tf.entries = TimeLoader.query();
   tf.addTime = function (input) {
     console.log("addTime Clicked");
-      TimeEntries.create({Deventry: input}, function(){
-      console.log('SUCCESS', entry);
+      tf.try = 1
+      TimeEntries.create({pid:input.project_id, devDate: input.devDate, devDuration: input.devDuration, note: input.note, project_id: input.project_id, user_id: input.user_id}, function(){
+      console.log('SUCCESS', input);
+      tf.entries.push({devDate: input.devDate, devDuration: input.devDuration, note: input.note})
+
     }, function(error){
-      console.log(error)
-      console.log('Error(input): ', input);
+      console.log(error, 'Error(input): ', input);
     });
  }
-}
-
-timeListController.$inject = ['TimeEntries'];
-function timeListController(TimeEntries){
-  var tl = this;
-  tl.entries = TimeEntries.query();
 }
 
 }());
